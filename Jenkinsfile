@@ -6,11 +6,6 @@ pipeline {
     timestamps()
   }
 
-  environment {
-    DEV_BRANCH  = 'origin/dev'
-    MAIN_BRANCH = 'origin/main'
-  }
-
   triggers {
     // Polling is fine for local Jenkins
     pollSCM('H/2 * * * *')
@@ -20,8 +15,14 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scm
-        // Helpful for debugging branch detection
-        sh 'echo GIT_BRANCH="$GIT_BRANCH"'
+        script {
+          // Determine the current branch name in a single-branch Pipeline job
+          env.CURRENT_BRANCH = sh(
+            script: 'git rev-parse --abbrev-ref HEAD',
+            returnStdout: true
+          ).trim()
+          echo "CURRENT_BRANCH=${env.CURRENT_BRANCH}"
+        }
       }
     }
 
@@ -35,7 +36,7 @@ pipeline {
     }
 
     stage('Deploy to TEST') {
-      when { expression { env.GIT_BRANCH == env.DEV_BRANCH } }
+      when { expression { env.CURRENT_BRANCH == 'dev' } }
       steps {
         sh 'chmod +x scripts/deploy.sh'
         sh './scripts/deploy.sh test'
@@ -43,21 +44,23 @@ pipeline {
     }
 
     stage('Smoke Test (TEST)') {
-      when { expression { env.GIT_BRANCH == env.DEV_BRANCH } }
+      when { expression { env.CURRENT_BRANCH == 'dev' } }
       steps {
         sh 'curl -fsS http://localhost:3001/health | tee smoke_test_output_test.txt'
+        archiveArtifacts artifacts: 'smoke_test_output_test.txt', onlyIfSuccessful: false, allowEmptyArchive: true
       }
     }
 
+    // Manual approval only on main
     stage('Approve PROD Deploy') {
-      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
+      when { expression { env.CURRENT_BRANCH == 'main' } }
       steps {
         input message: 'Deploy to PROD?', ok: 'Ship it'
       }
     }
 
     stage('Deploy to PROD') {
-      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
+      when { expression { env.CURRENT_BRANCH == 'main' } }
       steps {
         sh 'chmod +x scripts/deploy.sh'
         sh './scripts/deploy.sh prod'
@@ -65,9 +68,10 @@ pipeline {
     }
 
     stage('Smoke Test (PROD)') {
-      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
+      when { expression { env.CURRENT_BRANCH == 'main' } }
       steps {
         sh 'curl -fsS http://localhost:3002/health | tee smoke_test_output_prod.txt'
+        archiveArtifacts artifacts: 'smoke_test_output_prod.txt', onlyIfSuccessful: false, allowEmptyArchive: true
       }
     }
   }
@@ -75,8 +79,6 @@ pipeline {
   post {
     always {
       echo "Build finished."
-      // Avoid failure when no smoke file was produced (e.g., building dev but PROD stages skipped)
-      archiveArtifacts artifacts: 'smoke_test_output_*.txt', onlyIfSuccessful: false, allowEmptyArchive: true
     }
   }
 }
