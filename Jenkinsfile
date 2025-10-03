@@ -7,8 +7,8 @@ pipeline {
   }
 
   triggers {
-    // Local Jenkins can't receive GitHub webhooks easily; polling is fine for now.
-    pollSCM('H/2 * * * *') // check every ~2 minutes
+    // Polling is fine for local Jenkins
+    pollSCM('H/2 * * * *')
   }
 
   stages {
@@ -17,6 +17,7 @@ pipeline {
         checkout scm
       }
     }
+
     stage('Build & Test') {
       steps {
         dir('app') {
@@ -25,11 +26,25 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy to TEST') {
+      steps {
+        sh 'chmod +x scripts/deploy.sh'
+        sh './scripts/deploy.sh test'
+      }
+    }
+
+    stage('Smoke Test (TEST)') {
+      steps {
+        sh 'curl -fsS http://localhost:3001/health | tee smoke_test_output.txt'
+      }
+    }
   }
 
   post {
     always {
       echo "Build finished."
+      archiveArtifacts artifacts: 'smoke_test_output.txt', onlyIfSuccessful: false
     }
   }
 }
