@@ -6,6 +6,11 @@ pipeline {
     timestamps()
   }
 
+  environment {
+    DEV_BRANCH  = 'origin/dev'
+    MAIN_BRANCH = 'origin/main'
+  }
+
   triggers {
     // Polling is fine for local Jenkins
     pollSCM('H/2 * * * *')
@@ -13,7 +18,11 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      steps { checkout scm }
+      steps {
+        checkout scm
+        // Helpful for debugging branch detection
+        sh 'echo GIT_BRANCH="$GIT_BRANCH"'
+      }
     }
 
     stage('Build & Test') {
@@ -26,7 +35,7 @@ pipeline {
     }
 
     stage('Deploy to TEST') {
-      when { branch 'dev' } // deploy to TEST from dev branch
+      when { expression { env.GIT_BRANCH == env.DEV_BRANCH } }
       steps {
         sh 'chmod +x scripts/deploy.sh'
         sh './scripts/deploy.sh test'
@@ -34,22 +43,21 @@ pipeline {
     }
 
     stage('Smoke Test (TEST)') {
-      when { branch 'dev' }
+      when { expression { env.GIT_BRANCH == env.DEV_BRANCH } }
       steps {
         sh 'curl -fsS http://localhost:3001/health | tee smoke_test_output_test.txt'
       }
     }
 
-    // Manual approval before PROD
     stage('Approve PROD Deploy') {
-      when { branch 'main' } // only ask for approval on main (prod)
+      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
       steps {
         input message: 'Deploy to PROD?', ok: 'Ship it'
       }
     }
 
     stage('Deploy to PROD') {
-      when { branch 'main' }
+      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
       steps {
         sh 'chmod +x scripts/deploy.sh'
         sh './scripts/deploy.sh prod'
@@ -57,7 +65,7 @@ pipeline {
     }
 
     stage('Smoke Test (PROD)') {
-      when { branch 'main' }
+      when { expression { env.GIT_BRANCH == env.MAIN_BRANCH } }
       steps {
         sh 'curl -fsS http://localhost:3002/health | tee smoke_test_output_prod.txt'
       }
@@ -67,7 +75,8 @@ pipeline {
   post {
     always {
       echo "Build finished."
-      archiveArtifacts artifacts: 'smoke_test_output_*.txt', onlyIfSuccessful: false
+      // Avoid failure when no smoke file was produced (e.g., building dev but PROD stages skipped)
+      archiveArtifacts artifacts: 'smoke_test_output_*.txt', onlyIfSuccessful: false, allowEmptyArchive: true
     }
   }
 }
