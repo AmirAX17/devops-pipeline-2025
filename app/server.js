@@ -1,5 +1,4 @@
 // app/server.js — Local JSON Data Backend (Offline Mode)
-
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -9,6 +8,46 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+// ---------- Metrics Setup (Step 1) ----------
+import { collectDefaultMetrics, Registry, Counter, Histogram } from "prom-client";
+
+const register = new Registry();
+collectDefaultMetrics({ register });
+
+// Count every HTTP request
+const httpRequestsTotal = new Counter({
+  name: "http_requests_total",
+  help: "Total number of HTTP requests",
+  labelNames: ["method", "route", "status"],
+  registers: [register],
+});
+
+// Measure duration of each request
+const httpRequestDurationSeconds = new Histogram({
+  name: "http_request_duration_seconds",
+  help: "Duration of HTTP requests in seconds",
+  labelNames: ["method", "route", "status"],
+  buckets: [0.01, 0.05, 0.1, 0.3, 0.5, 1, 2, 5],
+  registers: [register],
+});
+
+// Middleware to record metrics
+app.use((req, res, next) => {
+  const end = httpRequestDurationSeconds.startTimer();
+  res.on("finish", () => {
+    httpRequestsTotal.labels(req.method, req.path, String(res.statusCode)).inc();
+    end({ method: req.method, route: req.path, status: res.statusCode });
+  });
+  next();
+});
+
+// Endpoint for Prometheus
+app.get("/metrics", async (_, res) => {
+  res.setHeader("Content-Type", register.contentType);
+  res.end(await register.metrics());
+});
+
 
 // Serve static front-end files
 app.use(express.static(path.join(__dirname, "public")));

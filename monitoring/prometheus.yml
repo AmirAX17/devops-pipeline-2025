@@ -3,9 +3,6 @@ global:
   evaluation_interval: 5s
 
 scrape_configs:
-  - job_name: 'hello-test'
+  - job_name: 'aqi-app'
     static_configs:
-      - targets: ['host.docker.internal:3001']
-  - job_name: 'hello-prod'
-    static_configs:
-      - targets: ['host.docker.internal:3002']
+      - targets: ['host.docker.internal:8080']
