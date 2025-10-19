@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Air Quality Dashboard</title>
+    <title>🌏 Air Quality Dashboard</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -12,7 +12,7 @@
     <div class="dashboard">
         <div class="aqi-card">
             <h1>🌏 Air Quality Index (AQI)</h1>
-            <p class="subtitle">Enter a city to view live air quality data</p>
+            <p class="subtitle">Enter a city to view real-time air quality and weather data</p>
 
             <div class="input-group">
                 <input id="cityInput" placeholder="e.g. Melbourne" />
@@ -53,29 +53,23 @@
             <div id="weatherBox" class="weather hidden">
                 <h2>🌤️ Current Weather</h2>
                 <div class="weather-grid">
-                    <div class="weather-item">
-                        <span>Temperature</span>
+                    <div class="weather-item"><span>Temperature</span>
                         <p id="temp">-- °C</p>
                     </div>
-                    <div class="weather-item">
-                        <span>Humidity</span>
+                    <div class="weather-item"><span>Humidity</span>
                         <p id="humidity">-- %</p>
                     </div>
-                    <div class="weather-item">
-                        <span>Wind Speed</span>
+                    <div class="weather-item"><span>Wind Speed</span>
                         <p id="wind">-- m/s</p>
                     </div>
-                    <div class="weather-item">
-                        <span>Condition</span>
+                    <div class="weather-item"><span>Condition</span>
                         <p id="condition">--</p>
                     </div>
                 </div>
             </div>
 
-
             <div id="statusBar" class="status"></div>
-            
-
+            <footer>🌐 Offline Local Data • AQI Dashboard</footer>
         </div>
     </div>
 

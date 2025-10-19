@@ -1,6 +1,4 @@
-// 🌏 Air Quality + Weather Dashboard Script (via secure backend)
 
-// Helper: map AQI value to color and angle
 function getAQIInfo(aqi) {
   if (aqi <= 50)
     return { label: "Good 😊", color: "#6dd400", angle: (aqi / 500) * 90 };
@@ -42,7 +40,7 @@ async function fetchAQI() {
   weatherBox.classList.add("hidden");
 
   try {
-    // --- 1️⃣ Fetch AQI from backend ---
+    //  Fetch AQI from backend 
     const response = await fetch(`/aqi?city=${encodeURIComponent(city)}`);
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Failed to fetch AQI data.");
@@ -60,7 +58,15 @@ async function fetchAQI() {
     needle.style.transform = `rotate(${angle}deg)`;
     aqiValue.textContent = AQI;
     aqiStatus.textContent = label;
-    aqiStatus.style.color = color;
+aqiStatus.className = "aqi-status";
+
+// Apply dynamic color classes
+if (AQI <= 50) aqiStatus.classList.add("good");
+else if (AQI <= 100) aqiStatus.classList.add("moderate");
+else if (AQI <= 150) aqiStatus.classList.add("unhealthy-sensitive");
+else if (AQI <= 200) aqiStatus.classList.add("unhealthy");
+else aqiStatus.classList.add("hazardous");
+
 
     // Update pollutant cards
     pm25.textContent = data.metrics.PM25 ?? "--";
@@ -73,7 +79,7 @@ async function fetchAQI() {
 
     resultBox.classList.remove("hidden");
 
-    // --- 2️⃣ Fetch WEATHER from backend ---
+    // Fetch WEATHER from backend 
     const weatherRes = await fetch(`/weather?city=${encodeURIComponent(city)}`);
     const weather = await weatherRes.json();
     if (!weatherRes.ok) throw new Error(weather.error || "Weather fetch failed.");

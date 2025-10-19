@@ -1,140 +1,142 @@
-/* 🌏 AQI + Weather Dashboard Styles */
+/* 🌏 AQI + Weather Dashboard — Glassmorphism + High Contrast */
 
 * {
   box-sizing: border-box;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, #a0d8ff, #f0faff);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #5ea9ff, #c7e7ff);
   margin: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  color: #222;
+  color: #111;
 }
 
-/* Main container */
+/* Main card */
 .dashboard {
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-  width: 480px;
-  padding: 2.2rem;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
   text-align: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  width: 480px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: fadeIn 0.7s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Header */
 h1 {
   margin: 0;
-  font-size: 1.8rem;
-  color: #005fcc;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0043b8;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #444;
+  margin: 0.5rem 0 1.2rem;
 }
 
-/* Input section */
+/* Input */
 .input-group {
   display: flex;
+  gap: 0.6rem;
   justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 1.2rem;
 }
 
 input {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 70%;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #ccd5e0;
+  width: 68%;
   font-size: 1rem;
-  outline: none;
+  background: #f9fcff;
+  color: #222;
+}
+
+input:focus {
+  border-color: #0078ff;
+  box-shadow: 0 0 6px rgba(0, 120, 255, 0.4);
 }
 
 button {
-  background: #0078ff;
+  background: linear-gradient(135deg, #0078ff, #0043b8);
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
   font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 70, 200, 0.3);
 }
 
 button:hover {
-  background: #005fcc;
+  background: linear-gradient(135deg, #005be0, #003b9e);
+  transform: translateY(-2px);
 }
 
-.gauge-container {
-  margin: 1rem auto;
-}
-
-.gauge {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, #fff 40%, #e8f5ff 100%);
-}
-
-.needle {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  width: 4px;
-  height: 70px;
-  background: #333;
-  transform-origin: bottom center;
-  transform: rotate(0deg);
-  border-radius: 2px;
-  transition: transform 1s ease-out;
-}
-
-.center-circle {
-  width: 18px;
-  height: 18px;
-  background: #333;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
+/* AQI Data */
 .aqi-display {
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
 }
 
 .aqi-value {
-  font-size: 2.4rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   color: #111;
-  margin-top: 0.5rem;
+  margin: 0.8rem 0;
 }
 
-
+/* Enhanced AQI Status Badge */
 .aqi-status {
-  display: block;
+  display: inline-block;
   margin-top: 0.6rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-  background: #eef6ff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 10px;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  padding: 0.6rem 1.3rem;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Pollutant cards */
+/* Dynamic AQI color states — applied dynamically via JS */
+.aqi-status.good {
+  background: linear-gradient(135deg, #28d146, #1ba93b);
+}
+
+.aqi-status.moderate {
+  background: linear-gradient(135deg, #ffcc00, #f5a623);
+}
+
+.aqi-status.unhealthy-sensitive {
+  background: linear-gradient(135deg, #ff6b00, #ff9a3c);
+}
+
+.aqi-status.unhealthy {
+  background: linear-gradient(135deg, #e53935, #c62828);
+}
+
+.aqi-status.hazardous {
+  background: linear-gradient(135deg, #6a1b9a, #4a0072);
+  box-shadow: 0 4px 10px rgba(106, 27, 154, 0.5);
+}
+
+
+/* Pollutant grid */
 .metrics-grid {
   margin-top: 1.5rem;
   display: grid;
@@ -142,91 +144,111 @@ button:hover {
   gap: 1rem;
 }
 
-
 .metric {
-  background: #f7faff;
-  border-radius: 12px;
-  padding: 0.8rem;
-  box-shadow: 0 4px 10px rgba(0, 90, 255, 0.1);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 0.9rem;
+  border: 1px solid #e5ecf5;
+  box-shadow: 0 4px 10px rgba(0, 80, 200, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.metric:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 80, 200, 0.2);
 }
 
 .metric span {
+  font-weight: 600;
+  color: #0052cc;
   display: block;
-  font-weight: 500;
-  color: #005fcc;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .metric p {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 700;
   margin: 0;
-  color: #222;
+  color: #111;
 }
 
-/* Weather section */
+/* Weather */
 .weather {
-  background: #f9fcff;
-  border-radius: 14px;
-  padding: 1rem;
-  margin-top: 1.5rem;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(160deg, #f1f6ff, #e5f1ff);
+  border-radius: 16px;
+  padding: 1.2rem;
+  margin-top: 1.8rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
 .weather h2 {
   font-size: 1.3rem;
-  color: #005fcc;
-  margin-bottom: 0.8rem;
+  color: #0043b8;
+  margin-bottom: 1rem;
 }
 
 .weather-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-
+  gap: 0.9rem;
 }
 
 .weather-item {
-  background: #eaf4ff;
-  border-radius: 10px;
-  padding: 0.7rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.8rem;
+  border: 1px solid #e4e9f0;
+  box-shadow: 0 3px 8px rgba(0, 90, 255, 0.07);
 }
 
 .weather-item span {
-  font-weight: 500;
-  color: #005fcc;
-  display: block;
-  margin-bottom: 0.2rem;
+  color: #0043b8;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .weather-item p {
+  font-weight: 700;
   font-size: 1rem;
-  font-weight: bold;
-  margin: 0;
-  color: #222;
+  margin: 0.2rem 0 0;
+  color: #111;
 }
 
-/* Fade transitions */
-.hidden {
-  display: none;
-}
-
+/* Status + Footer */
 .last-updated {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #5b6675;
+  margin-top: 1rem;
 }
 
 .status {
-  margin-top: 1.2rem;
-  font-size: 0.9rem;
-  color: #444;
+  margin-top: 1.3rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0043b8;
+  background: #e6f2ff;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  display: inline-block;
 }
 
 footer {
   margin-top: 1rem;
   font-size: 0.8rem;
-  color: #777;
+  color: #666;
 }
 
-
+/* Responsive */
+@media (max-width: 520px) {
+  .dashboard {
+    width: 90%;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
+}
