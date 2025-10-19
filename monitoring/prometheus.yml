@@ -5,9 +5,10 @@ global:
 scrape_configs:
   - job_name: 'aqi-app'
     static_configs:
-      - targets: ['host.docker.internal:8080']
+      - targets: ['host.docker.internal:8080']   # your AQI backend
 
   - job_name: 'jenkins'
     metrics_path: '/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:9091']
+      - targets: ['host.docker.internal:8080']   # Jenkins port, not 9091
+
