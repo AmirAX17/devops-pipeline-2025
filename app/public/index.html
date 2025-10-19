@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Quality Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="aqi-card">
+            <h1>🌏 Air Quality Index (AQI)</h1>
+            <p class="subtitle">Enter a city to view live air quality data</p>
+
+            <div class="input-group">
+                <input id="cityInput" placeholder="e.g. Melbourne" />
+                <button onclick="fetchAQI()">Check AQI</button>
+            </div>
+
+            <!-- AQI Gauge -->
+            <div id="aqiDisplay" class="aqi-display hidden">
+                <div class="gauge-container">
+                    <div class="gauge">
+                        <div class="needle" id="needle"></div>
+                        <div class="center-circle"></div>
+                    </div>
+                    <div class="aqi-value" id="aqiValue">--</div>
+                    <div class="aqi-status" id="aqiStatus">Awaiting data</div>
+                </div>
+
+                <!-- Pollutant metrics -->
+                <div class="metrics-grid">
+                    <div class="metric"><span>PM2.5</span>
+                        <p id="pm25">--</p>
+                    </div>
+                    <div class="metric"><span>PM10</span>
+                        <p id="pm10">--</p>
+                    </div>
+                    <div class="metric"><span>O₃</span>
+                        <p id="o3">--</p>
+                    </div>
+                    <div class="metric"><span>CO</span>
+                        <p id="co">--</p>
+                    </div>
+                </div>
+
+                <p id="lastUpdated" class="last-updated"></p>
+            </div>
+
+            <!-- 🌤️ Weather Section -->
+            <div id="weatherBox" class="weather hidden">
+                <h2>🌤️ Current Weather</h2>
+                <div class="weather-grid">
+                    <div class="weather-item">
+                        <span>Temperature</span>
+                        <p id="temp">-- °C</p>
+                    </div>
+                    <div class="weather-item">
+                        <span>Humidity</span>
+                        <p id="humidity">-- %</p>
+                    </div>
+                    <div class="weather-item">
+                        <span>Wind Speed</span>
+                        <p id="wind">-- m/s</p>
+                    </div>
+                    <div class="weather-item">
+                        <span>Condition</span>
+                        <p id="condition">--</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="statusBar" class="status"></div>
+            
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
