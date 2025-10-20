@@ -4,11 +4,11 @@ global:
 
 scrape_configs:
   - job_name: 'aqi-app'
-    metrics_path: '/metrics'        
+    metrics_path: '/metrics'
     static_configs:
-      - targets: ['host.docker.internal:8080']
+      - targets: ['aqi-dashboard:8080']   # container name inside the Compose network
 
   - job_name: 'jenkins'
     metrics_path: '/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8080']
+      - targets: ['host.docker.internal:8080']   # Jenkins on the host
