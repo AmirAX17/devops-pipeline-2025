@@ -17,7 +17,7 @@ pipeline {
         checkout scm
         script {
           // Find the remote branch (like origin/dev or origin/main) that contains HEAD
-          env.REMOTE_BRANCH = sh(
+          env.REMOTE_BRANCH = bat(
             script: 'git branch -r --contains HEAD | sed -n "s#.*origin/##p" | head -n1',
             returnStdout: true
           ).trim()
@@ -29,8 +29,8 @@ pipeline {
     stage('Build & Test') {
       steps {
         dir('app') {
-          sh 'npm ci || npm install'
-          sh 'npm test'
+          bat 'npm ci || npm install'
+          bat 'npm test'
         }
       }
     }
@@ -38,8 +38,8 @@ pipeline {
     stage('Deploy to TEST') {
       when { expression { env.REMOTE_BRANCH == 'dev' } }
       steps {
-        sh 'chmod +x scripts/deploy.sh'
-        sh './scripts/deploy.sh test'
+        bat 'chmod +x scripts/deploy.bat'
+        bat './scripts/deploy.bat test'
       }
     }
 
@@ -47,13 +47,13 @@ pipeline {
   when { expression { env.REMOTE_BRANCH == 'dev' } }
   steps {
     // Existing health check (keep it)
-    sh '''
+    bat '''
       set -e
       curl -fsS http://localhost:3001/health | jq -e ".status==\\"ok\\"" > /dev/null
     '''
 
     // NEW: capture first 20 lines of /metrics and save as artifact
-    sh '''
+    bat '''
       set -e
       curl -fsS http://localhost:3001/metrics | head -n 20 > metrics_head_test.txt
       echo "[INFO] Wrote metrics_head_test.txt"
@@ -75,8 +75,8 @@ pipeline {
     stage('Deploy to PROD') {
       when { expression { env.REMOTE_BRANCH == 'main' } }
       steps {
-        sh 'chmod +x scripts/deploy.sh'
-        sh './scripts/deploy.sh prod'
+        bat 'chmod +x scripts/deploy.bat'
+        bat './scripts/deploy.bat prod'
       }
     }
 
@@ -84,13 +84,13 @@ pipeline {
   when { expression { env.REMOTE_BRANCH == 'main' } }
   steps {
     
-    sh '''
+    bat '''
       set -e
       curl -fsS http://localhost:3002/health | jq -e ".status==\\"ok\\"" > /dev/null
     '''
 
     
-    sh '''
+    bat '''
       set -e
       curl -fsS http://localhost:3002/metrics | head -n 20 > metrics_head_prod.txt
       echo "[INFO] Wrote metrics_head_prod.txt"
