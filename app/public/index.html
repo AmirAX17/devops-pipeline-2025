@@ -2,21 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🌏 Air Quality Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌏 Air Quality Dashboard level 4 deployed</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="dashboard">
         <div class="aqi-card">
-            <h1>🌏 Air Quality Index (AQI)</h1>
+            <h1>🌏 Air Quality Index (AQI) Dashboard level 4 deployed</h1>
             <p class="subtitle">Enter a city to view real-time air quality and weather data</p>
 
             <div class="input-group">
-                <input id="cityInput" placeholder="e.g. Melbourne" />
-                <button onclick="fetchAQI()">Check AQI</button>
+                <input type="text" id="cityInput" placeholder="e.g. Melbourne">
+
+                <button type="button" onclick="fetchAQI()">Check AQI</button>
+
             </div>
 
             <!-- AQI Gauge -->
@@ -72,7 +74,6 @@
             <footer>🌐 Offline Local Data • AQI Dashboard</footer>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 
