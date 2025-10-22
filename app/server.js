@@ -79,20 +79,33 @@ function findCity(name) {
 }
 
 // AQI endpoint
-app.get("/aqi", (req, res) => {
-  const cityName = req.query.city;
-  if (!cityName) return res.status(400).json({ error: "Please provide ?city=CityName" });
+app.get('/aqi', async (req, res) => {
+  const city = req.query.city;
+  if (!city) {
+    return res.status(400).json({ error: 'City parameter is required' });
+  }
 
-  const cityData = findCity(cityName);
-  if (!cityData) return res.status(404).json({ error: `No local data found for ${cityName}` });
+  try {
+    const response = await fetch(`https://api.openaq.org/v2/latest?city=${city}`);
+    const data = await response.json();
+    
+    console.log('API Response:', JSON.stringify(data, null, 2)); // Debug log
+    
+    const metrics = {};
+    data.results[0].measurements.forEach(m => {
+      metrics[m.parameter] = m.value;
+    });
 
-  res.json({
-    city: cityData.city,
-    metrics: cityData.airQuality,
-    lastUpdated: cityData.lastUpdated,
-    source: "local-json",
-    cached: false,
-  });
+    console.log('Processed Metrics:', metrics); // Debug log
+
+    res.json({
+      city,
+      cached: false,
+      metrics
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch AQI data' });
+  }
 });
 
 // Weather endpoint
@@ -115,8 +128,13 @@ app.get("/weather", (req, res) => {
   });
 });
 
-// Start the server
-const port = process.env.PORT || 8080;
-app.listen(port, () =>
-  console.log(` Local AQI + Weather Dashboard running at http://localhost:${port}`)
-);
+// Export the app before starting the server
+export default app;
+
+// Only start the server if this file is run directly (not imported as a module)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const port = process.env.PORT || 8080;
+  app.listen(port, () =>
+    console.log(` Local AQI + Weather Dashboard running at http://localhost:${port}`)
+  );
+}
