@@ -1,7 +1,18 @@
-FROM --platform=$TARGETPLATFORM node:20-alpine
+# Dockerfile at project root
+FROM node:20-alpine
 WORKDIR /app
-COPY package.json package-lock.json* ./
+
+#  Copy package files from the app folder
+COPY app/package*.json ./
+
+#  Install only production dependencies
 RUN npm ci --omit=dev || npm i --omit=dev
-COPY . .
+
+#  Copy the entire app source code into the image
+COPY app/ .
+
+#  Expose the app’s port
 EXPOSE 8080
-CMD ["npm","start"]
+
+#  Default start command
+CMD ["npm", "start"]
