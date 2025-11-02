@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 
 // Endpoint for Prometheus
 app.get("/metrics", async (_, res) => {
-  res.setHeader("Content-Type", register.contentType);
+  res.setHeader("Content-Type", register.contentType); 
   res.end(await register.metrics());
 });
 
@@ -59,7 +59,7 @@ app.get("/health", (_, res) => {
 });
 
 // Load JSON data once at startup
-const dataPath = path.join(__dirname, "public", "data", "aqi.json");
+const dataPath = path.join(__dirname, "public", "data", "aqi.json"); 
 let cities = [];
 try {
   const fileContent = fs.readFileSync(dataPath, "utf8");
