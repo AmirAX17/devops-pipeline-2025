@@ -1,0 +1,444 @@
+[
+  {
+    "city": "Melbourne",
+    "country": "AU",
+    "coords": { "lat": -37.8136, "lon": 144.9631 },
+    "airQuality": { "PM25": 8.2, "PM10": 18.5, "O3": 7.1, "CO": 0.42 },
+    "weather": {
+      "temperature": 17.3,
+      "humidity": 62,
+      "wind": 3.6,
+      "condition": "Partly cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Sydney",
+    "country": "AU",
+    "coords": { "lat": -33.8688, "lon": 151.2093 },
+    "airQuality": { "PM25": 10.4, "PM10": 22.1, "O3": 9.3, "CO": 0.48 },
+    "weather": {
+      "temperature": 19.1,
+      "humidity": 58,
+      "wind": 4.2,
+      "condition": "Clear sky"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Brisbane",
+    "country": "AU",
+    "coords": { "lat": -27.4698, "lon": 153.0251 },
+    "airQuality": { "PM25": 12.7, "PM10": 24.8, "O3": 10.2, "CO": 0.5 },
+    "weather": {
+      "temperature": 22.4,
+      "humidity": 66,
+      "wind": 2.9,
+      "condition": "Humid"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Perth",
+    "country": "AU",
+    "coords": { "lat": -31.9523, "lon": 115.8613 },
+    "airQuality": { "PM25": 7.9, "PM10": 16.1, "O3": 6.4, "CO": 0.39 },
+    "weather": {
+      "temperature": 21.2,
+      "humidity": 48,
+      "wind": 3.3,
+      "condition": "Breezy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Adelaide",
+    "country": "AU",
+    "coords": { "lat": -34.9285, "lon": 138.6007 },
+    "airQuality": { "PM25": 9.1, "PM10": 19.0, "O3": 7.0, "CO": 0.41 },
+    "weather": {
+      "temperature": 18.6,
+      "humidity": 54,
+      "wind": 3.1,
+      "condition": "Sunny"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Auckland",
+    "country": "NZ",
+    "coords": { "lat": -36.8485, "lon": 174.7633 },
+    "airQuality": { "PM25": 6.3, "PM10": 14.2, "O3": 5.8, "CO": 0.35 },
+    "weather": {
+      "temperature": 16.4,
+      "humidity": 72,
+      "wind": 4.0,
+      "condition": "Light rain"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Wellington",
+    "country": "NZ",
+    "coords": { "lat": -41.2866, "lon": 174.7756 },
+    "airQuality": { "PM25": 7.1, "PM10": 15.8, "O3": 6.1, "CO": 0.36 },
+    "weather": {
+      "temperature": 14.9,
+      "humidity": 68,
+      "wind": 6.2,
+      "condition": "Windy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "London",
+    "country": "GB",
+    "coords": { "lat": 51.5072, "lon": -0.1276 },
+    "airQuality": { "PM25": 13.8, "PM10": 26.7, "O3": 12.3, "CO": 0.56 },
+    "weather": {
+      "temperature": 12.7,
+      "humidity": 74,
+      "wind": 3.8,
+      "condition": "Overcast"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Paris",
+    "country": "FR",
+    "coords": { "lat": 48.8566, "lon": 2.3522 },
+    "airQuality": { "PM25": 14.9, "PM10": 28.4, "O3": 11.0, "CO": 0.58 },
+    "weather": {
+      "temperature": 13.9,
+      "humidity": 70,
+      "wind": 2.7,
+      "condition": "Cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Berlin",
+    "country": "DE",
+    "coords": { "lat": 52.52, "lon": 13.405 },
+    "airQuality": { "PM25": 11.6, "PM10": 22.9, "O3": 10.5, "CO": 0.49 },
+    "weather": {
+      "temperature": 10.8,
+      "humidity": 69,
+      "wind": 3.4,
+      "condition": "Cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Madrid",
+    "country": "ES",
+    "coords": { "lat": 40.4168, "lon": -3.7038 },
+    "airQuality": { "PM25": 12.4, "PM10": 25.0, "O3": 13.2, "CO": 0.52 },
+    "weather": {
+      "temperature": 18.2,
+      "humidity": 47,
+      "wind": 2.5,
+      "condition": "Sunny"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Rome",
+    "country": "IT",
+    "coords": { "lat": 41.9028, "lon": 12.4964 },
+    "airQuality": { "PM25": 15.1, "PM10": 29.3, "O3": 12.1, "CO": 0.6 },
+    "weather": {
+      "temperature": 17.5,
+      "humidity": 64,
+      "wind": 2.2,
+      "condition": "Partly cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "NL",
+    "coords": { "lat": 52.3676, "lon": 4.9041 },
+    "airQuality": { "PM25": 9.9, "PM10": 20.7, "O3": 9.0, "CO": 0.46 },
+    "weather": {
+      "temperature": 11.6,
+      "humidity": 75,
+      "wind": 4.1,
+      "condition": "Light rain"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "New York",
+    "country": "US",
+    "coords": { "lat": 40.7128, "lon": -74.006 },
+    "airQuality": { "PM25": 16.5, "PM10": 31.1, "O3": 14.0, "CO": 0.64 },
+    "weather": {
+      "temperature": 15.3,
+      "humidity": 63,
+      "wind": 4.8,
+      "condition": "Breezy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Los Angeles",
+    "country": "US",
+    "coords": { "lat": 34.0522, "lon": -118.2437 },
+    "airQuality": { "PM25": 22.4, "PM10": 40.2, "O3": 18.6, "CO": 0.78 },
+    "weather": {
+      "temperature": 20.1,
+      "humidity": 49,
+      "wind": 2.6,
+      "condition": "Haze"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Chicago",
+    "country": "US",
+    "coords": { "lat": 41.8781, "lon": -87.6298 },
+    "airQuality": { "PM25": 14.2, "PM10": 27.9, "O3": 12.8, "CO": 0.57 },
+    "weather": {
+      "temperature": 11.4,
+      "humidity": 61,
+      "wind": 3.9,
+      "condition": "Overcast"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Toronto",
+    "country": "CA",
+    "coords": { "lat": 43.65107, "lon": -79.347015 },
+    "airQuality": { "PM25": 12.1, "PM10": 23.5, "O3": 11.4, "CO": 0.5 },
+    "weather": {
+      "temperature": 9.8,
+      "humidity": 66,
+      "wind": 3.2,
+      "condition": "Cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Vancouver",
+    "country": "CA",
+    "coords": { "lat": 49.2827, "lon": -123.1207 },
+    "airQuality": { "PM25": 8.7, "PM10": 18.0, "O3": 7.9, "CO": 0.43 },
+    "weather": {
+      "temperature": 10.6,
+      "humidity": 79,
+      "wind": 2.8,
+      "condition": "Light rain"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Mexico City",
+    "country": "MX",
+    "coords": { "lat": 19.4326, "lon": -99.1332 },
+    "airQuality": { "PM25": 28.3, "PM10": 52.1, "O3": 19.4, "CO": 0.92 },
+    "weather": {
+      "temperature": 18.4,
+      "humidity": 55,
+      "wind": 2.1,
+      "condition": "Haze"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "São Paulo",
+    "country": "BR",
+    "coords": { "lat": -23.5558, "lon": -46.6396 },
+    "airQuality": { "PM25": 17.9, "PM10": 33.6, "O3": 13.7, "CO": 0.68 },
+    "weather": {
+      "temperature": 23.1,
+      "humidity": 70,
+      "wind": 3.0,
+      "condition": "Humid"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Buenos Aires",
+    "country": "AR",
+    "coords": { "lat": -34.6037, "lon": -58.3816 },
+    "airQuality": { "PM25": 13.2, "PM10": 25.4, "O3": 10.1, "CO": 0.54 },
+    "weather": {
+      "temperature": 19.0,
+      "humidity": 65,
+      "wind": 3.1,
+      "condition": "Partly cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Tokyo",
+    "country": "JP",
+    "coords": { "lat": 35.6762, "lon": 139.6503 },
+    "airQuality": { "PM25": 18.3, "PM10": 34.5, "O3": 12.6, "CO": 0.62 },
+    "weather": {
+      "temperature": 16.7,
+      "humidity": 64,
+      "wind": 2.7,
+      "condition": "Clear sky"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Seoul",
+    "country": "KR",
+    "coords": { "lat": 37.5665, "lon": 126.978 },
+    "airQuality": { "PM25": 22.6, "PM10": 45.2, "O3": 15.3, "CO": 0.75 },
+    "weather": {
+      "temperature": 14.2,
+      "humidity": 59,
+      "wind": 2.9,
+      "condition": "Haze"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Beijing",
+    "country": "CN",
+    "coords": { "lat": 39.9042, "lon": 116.4074 },
+    "airQuality": { "PM25": 45.1, "PM10": 82.3, "O3": 21.7, "CO": 1.12 },
+    "weather": {
+      "temperature": 12.1,
+      "humidity": 48,
+      "wind": 2.5,
+      "condition": "Smog"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Shanghai",
+    "country": "CN",
+    "coords": { "lat": 31.2304, "lon": 121.4737 },
+    "airQuality": { "PM25": 30.2, "PM10": 57.0, "O3": 17.9, "CO": 0.98 },
+    "weather": {
+      "temperature": 18.9,
+      "humidity": 67,
+      "wind": 2.3,
+      "condition": "Humid"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Singapore",
+    "country": "SG",
+    "coords": { "lat": 1.3521, "lon": 103.8198 },
+    "airQuality": { "PM25": 19.5, "PM10": 37.4, "O3": 10.9, "CO": 0.66 },
+    "weather": {
+      "temperature": 29.3,
+      "humidity": 78,
+      "wind": 2.0,
+      "condition": "Thunderstorms"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Bangkok",
+    "country": "TH",
+    "coords": { "lat": 13.7563, "lon": 100.5018 },
+    "airQuality": { "PM25": 26.7, "PM10": 49.2, "O3": 14.1, "CO": 0.83 },
+    "weather": {
+      "temperature": 31.0,
+      "humidity": 73,
+      "wind": 1.8,
+      "condition": "Humid"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Delhi",
+    "country": "IN",
+    "coords": { "lat": 28.6139, "lon": 77.209 },
+    "airQuality": { "PM25": 72.4, "PM10": 128.6, "O3": 24.3, "CO": 1.46 },
+    "weather": {
+      "temperature": 27.5,
+      "humidity": 46,
+      "wind": 2.2,
+      "condition": "Haze"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Dhaka",
+    "country": "BD",
+    "coords": { "lat": 23.8103, "lon": 90.4125 },
+    "airQuality": { "PM25": 64.2, "PM10": 115.7, "O3": 22.1, "CO": 1.28 },
+    "weather": {
+      "temperature": 30.2,
+      "humidity": 72,
+      "wind": 2.4,
+      "condition": "Humid"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Dubai",
+    "country": "AE",
+    "coords": { "lat": 25.2048, "lon": 55.2708 },
+    "airQuality": { "PM25": 35.8, "PM10": 79.4, "O3": 16.0, "CO": 0.9 },
+    "weather": {
+      "temperature": 34.7,
+      "humidity": 42,
+      "wind": 3.5,
+      "condition": "Dust"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Istanbul",
+    "country": "TR",
+    "coords": { "lat": 41.0082, "lon": 28.9784 },
+    "airQuality": { "PM25": 24.6, "PM10": 47.8, "O3": 13.9, "CO": 0.77 },
+    "weather": {
+      "temperature": 17.2,
+      "humidity": 63,
+      "wind": 3.3,
+      "condition": "Partly cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Cairo",
+    "country": "EG",
+    "coords": { "lat": 30.0444, "lon": 31.2357 },
+    "airQuality": { "PM25": 56.7, "PM10": 102.3, "O3": 18.1, "CO": 1.05 },
+    "weather": {
+      "temperature": 28.8,
+      "humidity": 38,
+      "wind": 3.1,
+      "condition": "Dust"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Johannesburg",
+    "country": "ZA",
+    "coords": { "lat": -26.2041, "lon": 28.0473 },
+    "airQuality": { "PM25": 27.4, "PM10": 51.0, "O3": 12.4, "CO": 0.82 },
+    "weather": {
+      "temperature": 20.5,
+      "humidity": 44,
+      "wind": 3.0,
+      "condition": "Sunny"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  },
+  {
+    "city": "Nairobi",
+    "country": "KE",
+    "coords": { "lat": -1.2921, "lon": 36.8219 },
+    "airQuality": { "PM25": 18.1, "PM10": 34.2, "O3": 10.8, "CO": 0.66 },
+    "weather": {
+      "temperature": 22.0,
+      "humidity": 52,
+      "wind": 2.1,
+      "condition": "Partly cloudy"
+    },
+    "lastUpdated": "2025-10-19T00:00:00Z"
+  }
+]
